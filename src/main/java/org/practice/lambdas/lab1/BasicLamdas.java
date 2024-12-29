@@ -8,9 +8,9 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-public class BasicLamdas<T> {
+public class BasicLamdas {
     public static void main(String[] args) {
-        BasicLamdas<String> obj = new BasicLamdas<>();
+        BasicLamdas obj = new BasicLamdas();
 
         obj.consumer("Printable lambda");
 //        obj.supplier();
