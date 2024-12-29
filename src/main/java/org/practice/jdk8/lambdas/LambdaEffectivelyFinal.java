@@ -1,4 +1,4 @@
-package org.practice.lambdas;
+package org.practice.jdk8.lambdas;
 
 import java.util.ArrayList;
 import java.util.Iterator;

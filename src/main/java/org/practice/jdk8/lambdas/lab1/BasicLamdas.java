@@ -1,4 +1,4 @@
-package org.practice.lambdas.lab1;
+package org.practice.jdk8.lambdas.lab1;
 
 import java.util.ArrayList;
 import java.util.Comparator;

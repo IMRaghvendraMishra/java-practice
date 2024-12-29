@@ -1,4 +1,4 @@
-package org.practice.lambdas.lab2;
+package org.practice.jdk8.lambdas.lab2;
 
 import java.util.*;
 import java.util.function.*;

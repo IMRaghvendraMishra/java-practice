@@ -1,4 +1,4 @@
-package org.practice.lambdas.lab1;
+package org.practice.jdk8.lambdas.lab1;
 
 class Person {
     private String name;
