@@ -27,7 +27,7 @@ public class FI_from_API {
 //        function();
         unaryBinaryOperator();
     }
-    
+
     private static void predicate() {
         // Predicate<T> is a functional interface i.e. one abstract method:
         //      boolean test(T t); 
@@ -47,10 +47,10 @@ public class FI_from_API {
         //      T get()
         Supplier<StringBuilder> supSB = StringBuilder::new; // StringBuilder::new == () -> new StringBuilder();
         System.out.println("Supplier SB: " + supSB.get().append("SK"));  // Supplier SB: SK
-        
+
         Supplier<LocalTime> supTime = LocalTime::now; // LocalTime::now == () -> LocalTime.now();
         System.out.println("Supplier time: " + supTime.get());  // Supplier time: 09:11:39.121101600
-        
+
         Supplier<Double> sRandom = Math::random; // Math::random == () -> Math.random();
         System.out.println(sRandom.get());  // e.g. 0.782467864130131
     }
@@ -60,7 +60,7 @@ public class FI_from_API {
         //      void accept(T t)
         Consumer<String> printC = System.out::println; // System.out::println == s -> System.out.println(s);  // lambda
         printC.accept("To be or not to be, that is the question");
-        
+
         List<String> names = new ArrayList<>();
         names.add("John");
         names.add("Mary");
@@ -75,10 +75,10 @@ public class FI_from_API {
         biCon.accept("Washington D.C.", "USA");
         System.out.println(mapCapitalCities);  // {Dublin=Ireland, Washington D.C.=USA}
 
-        BiConsumer<String, String> mapPrint = (key, value) -> 
-                                                    System.out.println(key + " is the capital of: "+value);
+        BiConsumer<String, String> mapPrint = (key, value) ->
+                System.out.println(key + " is the capital of: " + value);
         mapCapitalCities.forEach(mapPrint); // Dublin is the capital of: Ireland
-                                            // Washington D.C. is the capital of: USA
+        // Washington D.C. is the capital of: USA
     }
 
     private static void function() {
@@ -89,22 +89,22 @@ public class FI_from_API {
 
         // BiFunction<T, U, R> is a functional interface i.e. one abstract method:
         //      R apply(T t, U u)
-        BiFunction<String, String, Integer> biFn   = (s1, s2) -> s1.length() + s2.length();
+        BiFunction<String, String, Integer> biFn = (s1, s2) -> s1.length() + s2.length();
         System.out.println("BiFunction: " + biFn.apply("William", "Shakespeare"));  // 18
 
-        BiFunction<String, String, String> biFn2   = (s1, s2) -> s1.concat(s2);
+        BiFunction<String, String, String> biFn2 = (s1, s2) -> s1.concat(s2);
         System.out.println("BiFunction: " + biFn2.apply("William ", "Shakespeare"));  // William Shakespeare
     }
 
     private static void unaryBinaryOperator() {
         // UnaryOperator<T> extends Function<T, T> is a functional interface i.e. one abstract method:
         //      T apply(T t)
-        UnaryOperator<String> unaryOp = name -> "My name is "+name;
+        UnaryOperator<String> unaryOp = name -> "My name is " + name;
         System.out.println("UnaryOperator: " + unaryOp.apply("Sean"));  // My name is Sean
 
         // BinaryOperator<T> extends BiFunction<T, T, T> is a functional interface i.e. one abstract method:
         //      T apply(T t1, T t2)
-        BinaryOperator<String> binaryOp   = (s1, s2) -> s1.concat(s2);
+        BinaryOperator<String> binaryOp = (s1, s2) -> s1.concat(s2);
         System.out.println("BinaryOperator: " + binaryOp.apply("William ", "Shakespeare"));  // William Shakespeare
     }
 }

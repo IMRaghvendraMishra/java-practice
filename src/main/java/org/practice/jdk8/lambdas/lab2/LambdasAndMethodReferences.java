@@ -22,8 +22,8 @@ public class LambdasAndMethodReferences {
      * d. prove that the sort worked.
      * e. re-initialise the list (so it is unsorted again).
      * f. code the method reference version.
-     *     i. sort() is overloaded : sort(List) and sort(List, Comparator)
-     *     ii. how does Java know which version to call?
+     * i. sort() is overloaded : sort(List) and sort(List, Comparator)
+     * ii. how does Java know which version to call?
      * g. invoke the method reference version.
      * h. prove that the sort worked.
      */
@@ -105,11 +105,11 @@ public class LambdasAndMethodReferences {
      * d. code the method reference version of the lambda from (a).
      * e. repeat b and c above except using the method reference version.
      * f. code a BiPredicate lambda typed for String and String:
-     *     i. the lambda takes in two parameters (hence “Bi”)
-     *     ii. check if the first parameter starts with the second parameter
-     *     iii. invoke the lambda twice:
-     *         1. passing in “Mr. Joe Bloggs” and “Mr.” (returns true)
-     *         2. passing in “Mr. Joe Bloggs” and “Ms.” (returns false)
+     * i. the lambda takes in two parameters (hence “Bi”)
+     * ii. check if the first parameter starts with the second parameter
+     * iii. invoke the lambda twice:
+     * 1. passing in “Mr. Joe Bloggs” and “Mr.” (returns true)
+     * 2. passing in “Mr. Joe Bloggs” and “Ms.” (returns false)
      * g. code the method reference version of the lambda from (f).
      * h. test it as per above in (f.iii)
      */
@@ -153,18 +153,18 @@ public class LambdasAndMethodReferences {
      * c. add “Lambda” to the list.
      * d. output the list to show it worked.
      * e. code the method reference version of the lambda:
-     *     i. re-initialise list by invoking the method reference version.
-     *     ii. add “Method Reference” to the list.
-     *     iii. output the list to show it worked.
+     * i. re-initialise list by invoking the method reference version.
+     * ii. add “Method Reference” to the list.
+     * iii. output the list to show it worked.
      * f. next, we want to use the overloaded ArrayList constructor passing in 10 as the initial capacity (note: the default
-     *     constructor assumes a capacity of 10).
-     *     i. thus, we need to pass IN something and get back OUT something:
-     *         1. IN: 10 OUT: ArrayList
-     *     ii. we need a Function typed for Integer and List<String> for this.
-     *     iii. code the lambda.
-     *     iv. re-initialise the list by invoking the lambda passing in 10 as the capacity.
-     *     v. add “Lambda” to the list.
-     *     vi. output the list to show it worked.
+     * constructor assumes a capacity of 10).
+     * i. thus, we need to pass IN something and get back OUT something:
+     * 1. IN: 10 OUT: ArrayList
+     * ii. we need a Function typed for Integer and List<String> for this.
+     * iii. code the lambda.
+     * iv. re-initialise the list by invoking the lambda passing in 10 as the capacity.
+     * v. add “Lambda” to the list.
+     * vi. output the list to show it worked.
      */
     void constructorMR() {
         // a. Code a Supplier typed for List<String> that returns a new ArrayList

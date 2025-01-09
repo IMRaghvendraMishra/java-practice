@@ -12,8 +12,9 @@ public class TerminalOperations {
 //        doMinAndMax();
         doReduce3();
     }
-    public static void doCollect1(){
-        
+
+    public static void doCollect1() {
+
         // StringBuilder collect(Supplier<StringBuilder> supplier,
         //               BiConsumer<StringBuilder,String> accumulator
         //               BiConsumer<StringBuilder,StringBuilder> combiner)
@@ -24,12 +25,13 @@ public class TerminalOperations {
         // in parallel processing. 
         StringBuilder word = Stream.of("ad", "jud", "i", "cate")
                 .collect(() -> new StringBuilder(),         // StringBuilder::new
-                         (sb, str) -> sb.append(str),       // StringBuilder::append
-                         (sb1, sb2) -> sb1.append(sb2));    // StringBuilder::append
+                        (sb, str) -> sb.append(str),       // StringBuilder::append
+                        (sb1, sb2) -> sb1.append(sb2));    // StringBuilder::append
         System.out.println(word);// adjudicate
     }
-    public static void doReduce3(){
-        
+
+    public static void doReduce3() {
+
         // <U> U reduce (U identity, 
         //               BiFunction accumulator,
         //               BinaryOperator combiner)
@@ -43,12 +45,13 @@ public class TerminalOperations {
         // results (2000) would then be combined into a final value (4000).
         // Example: we want to count the number of characters in each String
         Stream<String> stream = Stream.of("car", "bus", "train", "aeroplane");
-        int length = stream.reduce( 0,  // identity
-                                    (n, str) -> n + str.length(), // n is Integer
-                                    (n1, n2) -> n1 + n2); // both are Integers
+        int length = stream.reduce(0,  // identity
+                (n, str) -> n + str.length(), // n is Integer
+                (n1, n2) -> n1 + n2); // both are Integers
         System.out.println(length);// 20
     }
-    public static void doReduce2(){
+
+    public static void doReduce2() {
 
         // Optional<T> reduce(BinaryOperator<T> accumulator)
         // When you leave out the indentity, an Optional is
@@ -58,10 +61,10 @@ public class TerminalOperations {
         //      a) empty stream => empty Optional returned
         //      b) one element in stream => that element is returned
         //      c) multiple elements in stream => accumulator is applied
-        BinaryOperator<Integer> op = (a,b) -> a+b;
-        Stream<Integer> empty               = Stream.empty();
-        Stream<Integer> oneElement          = Stream.of(6);
-        Stream<Integer> multipleElements    = Stream.of(3, 4, 5);
+        BinaryOperator<Integer> op = (a, b) -> a + b;
+        Stream<Integer> empty = Stream.empty();
+        Stream<Integer> oneElement = Stream.of(6);
+        Stream<Integer> multipleElements = Stream.of(3, 4, 5);
         empty.reduce(op).ifPresent(System.out::println);            // 
         oneElement.reduce(op).ifPresent(System.out::println);       // 6
         multipleElements.reduce(op).ifPresent(System.out::println); // 12
@@ -69,13 +72,14 @@ public class TerminalOperations {
         // Sometimes it is nice to know if the stream is empty as opposed
         // to the case where there is a value returned from the accumulator
         // that happens to match the identity (however unlikely).
-        Integer val = Stream.of(1,1,1)
+        Integer val = Stream.of(1, 1, 1)
                 //     .filter(n -> n > 5)      // val is 1 this way
-                       .reduce(1, (a, b) -> a );// val is 1 this way too
+                .reduce(1, (a, b) -> a);// val is 1 this way too
         System.out.println(val);// 1
     }
-    public static void doReduce1(){
-        
+
+    public static void doReduce1() {
+
         // The reduce() method combines a stream into a single object. 
         // It is a reduction, which means it processes all elements.
         // The most common way of doing a reduction is to start with
@@ -93,32 +97,34 @@ public class TerminalOperations {
         String name = Stream.of("s", "e", "a", "n")
 //                        . filter(s -> s.length()>2)
 //                       .reduce("nothing", (s, c) -> s + c);
-                       .reduce("", (s, c) -> s + c);
+                .reduce("", (s, c) -> s + c);
         System.out.println(name);// sean
 
-        Integer product = Stream.of(2,3,4)
-                       .reduce(1, (a, b) -> a * b);
+        Integer product = Stream.of(2, 3, 4)
+                .reduce(1, (a, b) -> a * b);
         System.out.println(product);// 24
-        
+
     }
-    public static void doForEach(){
-        
+
+    public static void doForEach() {
+
         // void forEach(Consumer)
         // As there is no return value, forEach() is not a reduction.
         // As the return type is 'void', if you want something to
         // happen, it has to happen inside the Consumer (side-effect).
         Stream<String> names = Stream.of("Cathy", "Pauline", "Zoe");
         names.forEach(System.out::print);//CathyPaulineZoe
-        
+
         // Notes: forEach is also a method in the Collection interface.
         //        Streams cannot be the source of a for-each loop 
         //        because j8.streams do not implement the Iterable interface.
         Stream<Integer> s = Stream.of(1);
- //       for(Integer i : s){}// error: required array or Iterable
-        
+        //       for(Integer i : s){}// error: required array or Iterable
+
     }
-    public static void doMatches(){
-        
+
+    public static void doMatches() {
+
         // boolean anyMatch(Predicate)
         // boolean allMatch(Predicate)
         // boolean noneMatch(Predicate)
@@ -128,8 +134,9 @@ public class TerminalOperations {
         System.out.println(names.stream().allMatch(pred)); // false (two don't)
         System.out.println(names.stream().noneMatch(pred));// false (one does)
     }
-    public static void doFindAnyFindFirst(){
-        
+
+    public static void doFindAnyFindFirst() {
+
         // Optional<T> findAny()
         // Optional<T> findFirst()
         // These are terminal operations but not reductions 
@@ -137,38 +144,38 @@ public class TerminalOperations {
         // the elements in the stream. Reductions reduce the 
         // entire stream into one value.
         Optional<String> any = Stream.of("John", "Paul")
-                            .findAny();
+                .findAny();
         any.ifPresent(System.out::println);// John (usually)
 
         Optional<String> first = Stream.of("John", "Paul")
-                            .findFirst();
+                .findFirst();
         first.ifPresent(System.out::println);// John
-  
+
     }
-    
-    public static void doCount(){
-        
+
+    public static void doCount() {
+
         long count = Stream.of("dog", "cat")
-                        .count();
+                .count();
         System.out.println(count); // 2
-        
+
     }
-    
-    public static void doMinAndMax(){ 
-        
+
+    public static void doMinAndMax() {
+
         // Optional<T> min(Comparator)
         // Optional<T> max(Comparator)
         // Optional introduce in Java 8 to replace 'null'. If the stream is
         // empty then the Optional will be empty (and we won't have to
         // deal with null).
         Optional<String> min = Stream.of("deer", "horse", "pig")
-                                .min((s1, s2) -> s1.length()-s2.length());
+                .min((s1, s2) -> s1.length() - s2.length());
         min.ifPresent(System.out::println);// pig
-        
-        Optional<Integer> max = Stream.of(4,6,2,12,9)
-                                .max((i1, i2) -> i1-i2);
+
+        Optional<Integer> max = Stream.of(4, 6, 2, 12, 9)
+                .max((i1, i2) -> i1 - i2);
         max.ifPresent(System.out::println);// 12
-        
+
     }
 }
 

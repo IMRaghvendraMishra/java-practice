@@ -35,7 +35,7 @@ public class CollectorsExamples {
 
         names = Stream.of("Thomas", "Teresa", "Mike", "Alan", "Peter");
         System.out.println(names.collect(
-                 // forcing an empty list
+                // forcing an empty list
                 Collectors.partitioningBy(s -> s.length() > 10)
         ));// {false=[Thomas, Teresa, Mike, Alan, Peter], true=[]}
 
@@ -43,11 +43,11 @@ public class CollectorsExamples {
         System.out.println(names.collect(
                 Collectors.partitioningBy(
                         s -> s.length() > 4,// predicate
-                                Collectors.toSet())
+                        Collectors.toSet())
         ));// {false=[Mike, Alan], true=[Teresa, Peter]}
     }
 
-    public static void doGroupingBy(){
+    public static void doGroupingBy() {
 
         Stream<String> names = Stream.of("Martin", "Peter", "Joe", "Tom", "Tom", "Ann", "Alan");
         Map<Integer, List<String>> map1 = names.collect(
@@ -100,15 +100,15 @@ public class CollectorsExamples {
         System.out.println(map6.getClass());// class java.util.TreeMap
     }
 
-    public static void doCollectToMap(){
+    public static void doCollectToMap() {
 
         // We want a map: dessert name -> number of characters in dessert name
         // Output: {biscuits=8, cake=4, apple tart=10}
         Map<String, Integer> map = Stream.of("cake", "biscuits", "apple tart")
-            .collect(
-                    Collectors.toMap(s -> s,         // Function for the key
-                            s -> s.length())// Function for the value
-            );
+                .collect(
+                        Collectors.toMap(s -> s,         // Function for the key
+                                s -> s.length())// Function for the value
+                );
         System.out.println(map);
 
         // We want a map: number of characters in dessert name -> dessert name
@@ -119,41 +119,41 @@ public class CollectorsExamples {
         // To get around this, we can supply a merge function, whereby we append the
         // colliding keys values together.
         Map<Integer, String> map2 = Stream.of("cake", "biscuits", "tart")
-            .collect(
-                    Collectors.toMap(s -> s.length(),// key is the length
-                            s -> s,         // value is the String
-                            (s1, s2) -> s1 + "," + s2)// Merge function - what to
-                    // do if we have duplicate keys
-                    //   - append the values
-            );
+                .collect(
+                        Collectors.toMap(s -> s.length(),// key is the length
+                                s -> s,         // value is the String
+                                (s1, s2) -> s1 + "," + s2)// Merge function - what to
+                        // do if we have duplicate keys
+                        //   - append the values
+                );
         System.out.println(map2);// {4=cake,tart, 8=biscuits}
 
         // The maps returned are HashMaps but this is not guaranteed. What if we wanted
         // a TreeMap implementation so our keys would be sorted. The last argument
         // caters for this.
         TreeMap<String, Integer> map3 = Stream.of("cake", "biscuits", "apple tart", "cake")
-            .collect(
-                    Collectors.toMap(s -> s,            // key is the String
-                            s -> s.length(),   // value is the length of the String
-                            (len1, len2) -> len1 +len2, // what to do if we have
-                            // duplicate keys
-                            //    - add the *values*
-                            () -> new TreeMap<>() ));// TreeMap::new works
+                .collect(
+                        Collectors.toMap(s -> s,            // key is the String
+                                s -> s.length(),   // value is the length of the String
+                                (len1, len2) -> len1 + len2, // what to do if we have
+                                // duplicate keys
+                                //    - add the *values*
+                                () -> new TreeMap<>()));// TreeMap::new works
         System.out.println(map3);// {apple tart=10, biscuits=8, cake=8} Note: cake maps to 8
         System.out.println(map3.getClass());// class java.util.TreeMap
     }
 
-    public static void doJoining(){
+    public static void doJoining() {
         String s = Stream.of("cake", "biscuits", "apple tart")
-                        .collect(Collectors.joining(", "));
+                .collect(Collectors.joining(", "));
         System.out.println(s);  // cake, biscuits, apple tart
     }
 
-    public static void doAveragingInt(){
+    public static void doAveragingInt() {
         Double avg = Stream.of("cake", "biscuits", "apple tart")
-                        // averagingInt(ToIntFunction) functional method is:
-                        //      int applyAsInt(T value);
-                        .collect(Collectors.averagingInt(s -> s.length()));
+                // averagingInt(ToIntFunction) functional method is:
+                //      int applyAsInt(T value);
+                .collect(Collectors.averagingInt(s -> s.length()));
         System.out.println(avg);  // 7.333333333333333
     }
 }

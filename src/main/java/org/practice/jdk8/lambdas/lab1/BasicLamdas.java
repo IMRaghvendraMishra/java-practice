@@ -25,7 +25,7 @@ public class BasicLamdas {
     }
 
     void consumer(String str) {
-        Printable<String>  printableImpl = new Printable<String>() {
+        Printable<String> printableImpl = new Printable<String>() {
             @Override
             public void retrieve(String s) {
                 System.out.println(s);
@@ -62,7 +62,7 @@ public class BasicLamdas {
         Evaluate<Integer> evaluateImpl = new Evaluate<Integer>() {
             @Override
             public Boolean isNegative(Integer value) {
-                if(value < 0) {
+                if (value < 0) {
                     return true;
                 }
                 return false;
@@ -80,7 +80,7 @@ public class BasicLamdas {
         System.out.println("predicateLambda.test(1):: " + predicateLambda.test(1)); // false
 
         // test generic check method
-        Predicate<Integer> evenPredicate = num -> num %2 == 0;
+        Predicate<Integer> evenPredicate = num -> num % 2 == 0;
         CheckUtil<Integer> intCheckObj = new CheckUtil<>();
         System.out.println("evenPredicate.test(4):: " + intCheckObj.check(4, evenPredicate)); // even -> true
         System.out.println("evenPredicate.test(7):: " + intCheckObj.check(7, evenPredicate)); // odd -> false

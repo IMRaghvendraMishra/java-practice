@@ -26,9 +26,9 @@ public class TestPredicate {
 
         int x = 4;
         Predicate<Integer> evenPredicate = n -> n % 2 == 0;
-        System.out.println("Is "+x+" even? " + check(4, evenPredicate));  // true
+        System.out.println("Is " + x + " even? " + check(4, evenPredicate));  // true
         x = 7;
-        System.out.println("Is "+x+" even? "+check(7, evenPredicate));  // false
+        System.out.println("Is " + x + " even? " + check(7, evenPredicate));  // false
 
         String name = "Mr. Joe Bloggs";
         Predicate<String> startWithMrPredicate = str -> str.startsWith("Mr.");

@@ -14,11 +14,11 @@ public class InfiniteStreams {
         generate();
     }
 
-    public static int rand(){
+    public static int rand() {
         return (int) (Math.random() * 10);
     }
 
-    public static void iterate(){
+    public static void iterate() {
         // infinite stream of ordered numbers 
         //    2, 4, 6, 8, 10, 12 etc...
         // iterate(T seed, UnaryOperator<T> fn)
@@ -30,19 +30,19 @@ public class InfiniteStreams {
         infStream.forEach(System.out::println);
     }
 
-    public static void iterateWithLimit(){
+    public static void iterateWithLimit() {
         // finite stream of ordered numbers 
         // 2, 4, 6, 8, 10, 12, 14, 16, 18, 20
         Stream
-            .iterate(2, n -> n + 2)
-            // limit() is a short-circuiting stateful
-            // intermediate operation
-            .limit(10) 
-            // forEach(Consumer) is a terminal operation
-            .forEach(System.out::println);
+                .iterate(2, n -> n + 2)
+                // limit() is a short-circuiting stateful
+                // intermediate operation
+                .limit(10)
+                // forEach(Consumer) is a terminal operation
+                .forEach(System.out::println);
     }
-    
-    public static void generate(){
+
+    public static void generate() {
         // infinite stream of random unordered numbers 
         // between 0..9 inclusive
         //    Stream<T> generate(Supplier<T> s)
