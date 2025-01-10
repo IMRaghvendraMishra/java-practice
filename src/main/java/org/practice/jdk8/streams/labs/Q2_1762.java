@@ -1,0 +1,41 @@
+package org.practice.jdk8.streams.labs;
+
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+
+public class Q2_1762 {
+    public static void main(String[] args) {
+        List<Item> l = Arrays.asList(
+                new Item(1, "Screw"),
+                new Item(2, "Nail"),
+                new Item(3, "Bolt")
+        );
+        l.stream()          // Option 1
+                .sorted((a, b) -> a.getId().compareTo(b.getId()))
+                .forEach(System.out::print); // Sorted by id. Output: ScrewNailBolt // item.toString() -> item.getName()
+        System.out.println();
+
+        l.stream()          // Option 2
+                // Stream<Item> sorted(Comparator)
+                .sorted(Comparator.comparing(a -> a.getName())) // sorting by name
+//            .map((item)->item.getName()) // mapping to a Stream<String>
+                //         .map(Item::getName) // method reference version
+                .forEach(System.out::print); // Sorted by name, as we wanted. Output: BoltNailScrew
+        System.out.println();
+
+
+        l.stream()          // Option 3
+                .map((i) -> i.getName())    // mapping to a Stream<String>
+                .forEach(System.out::print); // Not sorted at all. Output: ScrewNailBolt
+        System.out.println();
+
+        l.stream()          // Option 4
+                .map((i) -> i.getName())  // mapping to a Stream<String>
+                .sorted()               // sort by the String's natural order
+                .forEach(System.out::print); // Sorted by name, as we wanted. Output: BoltNailScrew
+        System.out.println();
+    }
+}
+
+
